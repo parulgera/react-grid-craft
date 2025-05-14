@@ -1,14 +1,12 @@
 
 import React, { useState } from 'react';
-import DataGrid from '../components/DataGrid';
+import DataTable from 'react-data-table-component';
 import Header from '../components/Header';
-// import { useToast } from "@/hooks/use-toast"; // Removed
+// import DataGrid from '../components/DataGrid'; // Replaced with DataTable
 
 const QuotationsList = () => {
-  // const { toast } = useToast(); // Removed
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Sample data for quotations
   const quotationsData = [
     {
       id: "01",
@@ -46,28 +44,34 @@ const QuotationsList = () => {
   
   const columns = [
     { 
-      header: "Sr.No", 
-      accessor: "id" 
+      name: "Sr.No", 
+      selector: row => row.id,
+      sortable: true,
     },
     { 
-      header: "Title", 
-      accessor: "title" 
+      name: "Title", 
+      selector: row => row.title,
+      sortable: true,
     },
     { 
-      header: "From", 
-      accessor: "from" 
+      name: "From", 
+      selector: row => row.from,
+      sortable: true,
     },
     { 
-      header: "To", 
-      accessor: "to" 
+      name: "To", 
+      selector: row => row.to,
+      sortable: true,
     },
     { 
-      header: "Delivery Time", 
-      accessor: "deliveryTime" 
+      name: "Delivery Time", 
+      selector: row => row.deliveryTime,
+      sortable: true,
     },
     { 
-      header: "Price", 
-      accessor: "price" 
+      name: "Price", 
+      selector: row => row.price,
+      sortable: true,
     },
   ];
   
@@ -79,10 +83,6 @@ const QuotationsList = () => {
   );
   
   const handleAddRequest = () => {
-    // toast({ // Removed
-    //   title: "Request Feature",
-    //   description: "This feature is not implemented yet.",
-    // });
     console.log("Request feature button clicked. Toast functionality removed.");
   };
   
@@ -114,31 +114,16 @@ const QuotationsList = () => {
       </Header>
       
       <div className="mt-6">
-        <DataGrid 
+        <DataTable 
           columns={columns} 
-          data={filteredData} 
+          data={filteredData}
+          pagination
+          highlightOnHover
+          pointerOnHover
         />
       </div>
       
-      <div className="mt-4 flex justify-end">
-        <nav className="inline-flex rounded-md shadow">
-          <button className="px-3 py-1 rounded-l-md border border-gray-300 bg-white text-primary font-medium">
-            1
-          </button>
-          <button className="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-            2
-          </button>
-          <button className="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-            ...
-          </button>
-          <button className="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-            9
-          </button>
-          <button className="px-3 py-1 rounded-r-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-            10
-          </button>
-        </nav>
-      </div>
+      {/* Removed custom pagination */}
     </div>
   );
 };

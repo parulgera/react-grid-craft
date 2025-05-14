@@ -1,12 +1,11 @@
 
 import React, { useState } from 'react';
-import DataGrid from '../components/DataGrid';
+import DataTable from 'react-data-table-component';
 import Header from '../components/Header';
 import Badge from '../components/Badge';
-// import { useToast } from "@/hooks/use-toast"; // Removed
+// import DataGrid from '../components/DataGrid'; // Replaced with DataTable
 
 const TruckersList = () => {
-  // const { toast } = useToast(); // Removed
   const [searchTerm, setSearchTerm] = useState('');
   
   // Sample data for truckers
@@ -47,32 +46,38 @@ const TruckersList = () => {
   
   const columns = [
     { 
-      header: "ID", 
-      accessor: "id" 
+      name: "ID", 
+      selector: row => row.id,
+      sortable: true,
     },
     { 
-      header: "Name", 
-      accessor: "name" 
+      name: "Name", 
+      selector: row => row.name,
+      sortable: true,
     },
     { 
-      header: "Phone", 
-      accessor: "phone" 
+      name: "Phone", 
+      selector: row => row.phone,
+      sortable: true,
     },
     { 
-      header: "Location", 
-      accessor: "location" 
+      name: "Location", 
+      selector: row => row.location,
+      sortable: true,
     },
     { 
-      header: "Truck Type", 
-      accessor: "truckType" 
+      name: "Truck Type", 
+      selector: row => row.truckType,
+      sortable: true,
     },
     { 
-      header: "Availability", 
-      accessor: "availability",
+      name: "Availability", 
+      selector: row => row.availability, // Used for sorting
       cell: (row) => {
         const variant = row.availability === "Available" ? "success" : "warning";
         return <Badge variant={variant}>{row.availability}</Badge>;
-      }
+      },
+      sortable: true,
     },
   ];
   
@@ -84,10 +89,6 @@ const TruckersList = () => {
   );
   
   const handleAddTrucker = () => {
-    // toast({ // Removed
-    //   title: "Add Trucker",
-    //   description: "This feature is not implemented yet.",
-    // });
     console.log("Add trucker button clicked. Toast functionality removed.");
   };
   
@@ -119,9 +120,12 @@ const TruckersList = () => {
       </Header>
       
       <div className="mt-6">
-        <DataGrid 
+        <DataTable 
           columns={columns} 
-          data={filteredData} 
+          data={filteredData}
+          pagination
+          highlightOnHover
+          pointerOnHover
         />
       </div>
     </div>
