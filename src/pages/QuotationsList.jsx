@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import DataGrid from '../components/DataGrid';
 import Header from '../components/Header';
-import { useToast } from "@/hooks/use-toast";
+// import { useToast } from "@/hooks/use-toast"; // Removed
 
 const QuotationsList = () => {
-  const { toast } = useToast();
+  // const { toast } = useToast(); // Removed
   const [searchTerm, setSearchTerm] = useState('');
   
   // Sample data for quotations
@@ -79,10 +79,11 @@ const QuotationsList = () => {
   );
   
   const handleAddRequest = () => {
-    toast({
-      title: "Request Feature",
-      description: "This feature is not implemented yet.",
-    });
+    // toast({ // Removed
+    //   title: "Request Feature",
+    //   description: "This feature is not implemented yet.",
+    // });
+    console.log("Request feature button clicked. Toast functionality removed.");
   };
   
   return (

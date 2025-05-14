@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import DataGrid from '../components/DataGrid';
 import Header from '../components/Header';
 import Badge from '../components/Badge';
-import { useToast } from "@/hooks/use-toast";
+// import { useToast } from "@/hooks/use-toast"; // Removed
 
 const TruckersList = () => {
-  const { toast } = useToast();
+  // const { toast } = useToast(); // Removed
   const [searchTerm, setSearchTerm] = useState('');
   
   // Sample data for truckers
@@ -84,10 +84,11 @@ const TruckersList = () => {
   );
   
   const handleAddTrucker = () => {
-    toast({
-      title: "Add Trucker",
-      description: "This feature is not implemented yet.",
-    });
+    // toast({ // Removed
+    //   title: "Add Trucker",
+    //   description: "This feature is not implemented yet.",
+    // });
+    console.log("Add trucker button clicked. Toast functionality removed.");
   };
   
   return (
